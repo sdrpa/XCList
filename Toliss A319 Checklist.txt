@@ -1,0 +1,325 @@
+#
+#       This checklist works with Xcheklist 1.21+ plugin by Sparker and uglyDwarf
+#       Link to plugin page: http://forums.x-plane.org/index.php?/files/file/20785-xchecklist-linwinmac3264/
+#       Copy the checklist to the root folder of Toliss A-319 and rename it to "clist.txt"
+#
+sw_checklist:INTRODUCTION
+sw_itemvoid:AIRBUS A319 ToLiss NORMAL PROCEDURES CHECKLIST
+sw_itemvoid:BY PEDRO BACH
+
+sw_checklist:COCKPIT PREPARATION 1/4:COCKPIT PREPARATION 1/4
+sw_item:Parking Brake|SET:ckpt/parkbrk:1
+sw_item:Engine Master 1|OFF:ckpt/cutoffLeft/anim:0
+sw_item:Engine Master 2|OFF:ckpt/cutoffRight/anim:0
+sw_item:Ignition Selector|NORMAL:ckpt/startMode:1
+sw_item:Landing Gear|DOWN:ckpt/gearHandle:1
+sw_item:Exterior Power|CONNECT
+sw_item:Battery 1|ON:sim/cockpit2/electrical/battery_on[0]:1
+sw_item:Battery 2|ON:sim/cockpit2/electrical/battery_on[1]:1
+sw_item:Exterior Power|ON:sim/cockpit/electrical/gpu_on:1
+sw_item:Flaps|UP:sim/flightmodel2/wing/flap1_deg:0.00
+sw_item:Ground Spoilers|RETRACTED-DISARMED:ckpt/speedbrakeUp/anim:0.000000
+sw_item:Probe Window Heat|AUTO:sim/cockpit/switches/anti_ice_window_heat:0
+sw_item:CrossBleed|AUTO:ckpt/oh/bleedAir/anim:1
+sw_item:AnnunLights|TEST:ckpt/oh/annLight/anim:2
+sw_item:ADIRS Data Selector|STS:ckpt/oh/irsData:4
+sw_item:ADIRS System Selector|1:ckpt/oh/irsSys:1
+sw_item:ADIRS1 Selector|NAV:ckpt/oh/irs1/anim:1
+sw_itemvoid: Wait for BAT light OFF
+sw_itemvoid:Repeat for ADIRS2/3
+sw_item:ADIRS3 Selector|NAV:ckpt/oh/irs2/anim:1
+sw_item:ADIRS2 Selector|NAV:ckpt/oh/irs3/anim:1
+
+sw_continue:COCKPIT PREPARATION 2/4
+
+sw_checklist:COCKPIT PREPARATION 2/4:COCKPIT PREPARATION 2/4
+sw_item:Strobe Lights|AUTO:ckpt/oh/strobeLight/anim:1
+sw_item:Nav&Logo Lights|ON:ckpt/oh/navLight/anim:2
+sw_item:Seatbelts sign|ON:ckpt/oh/seatbelts/anim:1
+sw_item:NoSmoking sign|ON:ckpt/oh/nosmoking/anim:2
+sw_item:Emergency Lights|ARM:ckpt/oh/emerExitLight/anim:1
+sw_item:Landing Elevation|AUTO
+sw_item:PackFlow|AS REQUIRED
+sw_item:Fuel Pumps(x6)|ON:(AirbusFBW/FuelAutoPumpOHPArray[0]:1)&&(AirbusFBW/FuelAutoPumpOHPArray[1]:1)&&(AirbusFBW/FuelAutoPumpOHPArray[2]:1)&&(AirbusFBW/FuelAutoPumpOHPArray[3]:1)&&(AirbusFBW/FuelAutoPumpOHPArray[4]:1)&&(AirbusFBW/FuelAutoPumpOHPArray[5]:1)
+sw_item:Apu Fire Button|GUARD DOWN:ckpt/fireCenter/cover:0
+sw_item:Apu Fire Test|TEST
+sw_item:Eng1 Fire Button|ARM GUARD:ckpt/fireLeft/cover:0
+sw_item:Eng2 Fire Button|ARM GUARD:ckpt/fireRight/cover:0
+sw_item:Eng1 Fire Test|TEST
+sw_item:Eng2 Fire Test|TEST
+sw_item:Radio Panels(x3)|ON:(ckpt/oh/1/radioSwitch/anim:1.000000)&&(ckpt/oh/2/radioSwitch/anim:1.000000)&&(ckpt/oh/3/radioSwitch/anim:1.000000)
+
+sw_continue:COCKPIT PREPARATION 3/4
+
+sw_checklist:COCKPIT PREPARATION 3/4:COCKPIT PREPARATION 3/4
+sw_itemvoid:-------------------
+sw_itemvoid:FMGS INITIALIZATION
+sw_itemvoid:-------------------
+sw_itemvoid:MCDU Aircraft status page
+sw_item:engine type and aircraft type|Check 
+sw_item:database validity|Check
+ 
+sw_itemvoid:MCDU INIT page
+sw_item:Departure&Destination Airport|ENTER
+sw_item:Alternate Airport|ENTER
+sw_item:Flight Number|ENTER
+sw_item:Cost Index|ENTER
+sw_item:Cruise FL|ENTER
+sw_item:Current position coordinates|CHECK/MODIFY
+sw_item:ALIGN IRS|PRESS
+
+sw_itemvoid:F-PLN A page
+sw_item:Departure Route|SELECT/INSERT
+sw_item:Airways&Route Points|ENTER
+sw_item:Arrival Destination Airport|SELECT/INSERT
+sw_item:Route Discontinuities|CLEAR
+sw_item:Alternate Flight Plan|ENTER
+sw_item:Climb Speed|CHECK
+sw_item:Descend Speed|CHECK
+sw_item:Climb&Cruise Wind|ENTER
+sw_item:Flight Plan on ND|CHECK
+
+sw_itemvoid:INIT B page
+sw_item:ZFWCG&ZFW|INSERT
+sw_item:Block Fuel|INSERT
+
+sw_itemvoid:PERF page
+sw_item:Take-off Speeds|SET
+sw_item:Flex Temperature|INSERT
+sw_item:Flap position & THS|INSERT
+
+sw_continue:COCKPIT PREPARATION 4/4
+
+sw_checklist:COCKPIT PREPARATION 4/4:COCKPIT PREPARATION 4/4
+sw_item:Radio Freq|SET
+sw_item:ATC Clearance|OBTAIN
+sw_item:Altimeters|SET
+sw_item:FlightControlUnit|SET
+sw_item:Flight Directors|ON
+sw_item:LS|OFF
+sw_item:Navigation Mode|SET
+sw_item:Clock|CHECK
+sw_item:ATC/TCAS mode|AUTO:ckpt/transponder/pwrx/anim:1
+sw_item:ATC/TCAS ALT RPTRG|ON:ckpt/transponder/alt/anim:1
+sw_item:ATC/TCAS SYS|1:ckpt/transponder/sys/anim:0
+sw_item:A/SKID&NW STRG Switch|ON:ckpt/askidSwitch/anim:1
+sw_item:Apu Master|ON:AirbusFBW/APUMaster:1
+sw_item:Apu Start|ON:AirbusFBW/APUStarter:1
+sw_item:Exterior Power|OFF:sim/cockpit/electrical/gpu_on:0
+sw_item:GPU Truck|DISCONNECT
+sw_item:Apu Bleed|ON:AirbusFBW/APUBleedSwitch:1
+
+sw_checklist:PUSHBACK:PUSHBACK
+sw_item:Doors|CLOSED
+sw_item:Beacon Light|ON:ckpt/oh/beaconLight/anim:1
+sw_item:Tow Truck|CALL
+sw_item:A/SKID&NW STRG Switch|OFF:ckpt/askidSwitch/anim:0
+sw_item:Parking Brake|RELEASE:sim/flightmodel/controls/parkbrake:0
+sw_item:A/SKID&NW STRG Switch|ON:ckpt/askidSwitch/anim:1
+sw_item:Tow Truck|DISMISS
+sw_item:Parking Brake|ON:sim/flightmodel/controls/parkbrake:1
+
+sw_checklist:ENGINE START:ENGINE START
+sw_item:Ignition Selector|START:ckpt/startMode:2
+sw_item:Engine2 Master|ON:ckpt/cutoffLeft/anim:1
+sw_item:Engine1 Master|ON:ckpt/cutoffRight/anim:1
+
+sw_checklist:AFTER ENGINE START:AFTER ENGINE START
+sw_item:Ignition Selector|NORMAL:ckpt/startMode:1
+sw_item:Apu Bleed|OFF:AirbusFBW/APUBleedSwitch:0
+sw_item:Ground Spoilers|ARM:ckpt/speedbrakeUp/anim:1.000000
+sw_item:Flaps|TAKE OFF
+sw_item:Rudder Trim|ZERO:sim/cockpit2/controls/rudder_trim:0.0
+sw_item:Pitch Trim|T/OFF setting
+sw_item:Apu Master|OFF:AirbusFBW/APUMaster:0
+
+sw_checklist:TAXI:TAXI
+sw_item:Nose Light|TAXI:ckpt/oh/taxiLight/anim:1
+sw_item:Parking Brake|REL:sim/flightmodel/controls/parkbrake:0
+sw_item:ELAPSED TIME Counter|START
+sw_item:Brakes|CHECK
+sw_item:Flight Controls|CHECK
+sw_item:FMA modes|NAV & CLB armed
+sw_item:PFD & ND|No red flags
+sw_item:Terrain on ND|As required
+sw_item:Autobrake|MAX
+sw_item:Cabin Reay|CHECK
+sw_item:TO ConfigSwitch|PRESS
+sw_item:Anti-Ice|AS REQUIRED
+
+
+sw_checklist:BEFORE T/OFF:BEFORE T/OFF
+sw_item:Brake Temperature|CHECK
+sw_item:Clearance|OBTAIN
+sw_item:Engine Mode Selector|AS REQUIRED
+sw_itemvoid:Set to position START/IGN, if the runway has standing water or heavy rain expected
+sw_item:Aircon Packs|AS REQUIRED
+sw_itemvoid:Switching off Packs is only required on short runways with Full power take-offs (NO Flex)
+sw_item:Weather Radar|ON:sim/cockpit/switches/EFIFS_shows_weather:1
+sw_item:Rwy turn off lights|ON:ckpt/oh/rwyTurnOff/anim:1
+sw_item:Landing Lights|ON:(ckpt/oh/ladningLightLeft/anim:2)&&(ckpt/oh/ladningLightRight/anim:2)
+sw_item:Nose Light|TAKE OFF:ckpt/oh/taxiLight/anim:2
+
+
+sw_checklist:LINED UP:LINED UP
+sw_item:ATC TCAS|ON:ckpt/transponder/pwrx/anim:2
+sw_item:Chrono|START
+
+
+sw_checklist:TAKE OFF:TAKE OFF
+sw_item:Brakes|RELEASE
+sw_item:Thrust Levers|FLEX
+
+sw_checklist:AFTER TAKE OFF:AFTER TAKE OFF
+sw_item:Positive Climb|GEAR UP:sim/cockpit/switches/gear_handle_status:0
+sw_item:Ground Spoilers|DISARM:ckpt/speedbrakeUp/anim:0.000000
+sw_item:Autopilot AP1|ON:AirbusFBW/AP1Engage:1
+sw_item:Nose Light|OFF:ckpt/oh/taxiLight/anim:0
+sw_item:Rwy turn off lights|OFF:ckpt/oh/rwyTurnOff/anim:0
+sw_item:Thrust Levers|CLB
+sw_item:Flaps|UP:sim/flightmodel2/wing/flap1_deg:0
+sw_item:Engine Mode Selector|AS REQUIRED
+
+sw_checklist:CLIMB:CLIMB
+sw_item:Anti-Ice|AS REQUIRED
+sw_item:Altimeter QNH|SET
+sw_itemvoid:Passing 10 thousand Feet
+sw_item:Landing Lights|OFF:(ckpt/oh/ladningLightLeft/anim:0)&&(ckpt/oh/ladningLightRight/anim:0)
+sw_item:Nose Light|OFF:ckpt/oh/taxiLight/anim:0
+sw_item:Terrain on ND|OFF:AirbusFBW/TerrainSelectedND1:0
+
+sw_checklist:CRUISE:CRUISE
+sw_item:Seatbelts sign|OFF:ckpt/oh/seatbelts/anim:0
+sw_item:Cabin Temperature|CHECK
+
+sw_checklist:BEFORE DESCENT:BEFORE DESCENT
+sw_item:Landing Elevation|AUTO
+sw_item:FMGS ARRIVAL PAGE|CHECK
+sw_item:FMGS APPROACH PHASE|SET
+sw_item:FMGS DESCENT WIND|ENTER
+sw_item:GPWS switch|AS REQUIRED
+sw_itemvoid:If landing is expected with flaps 3, set the switch to ON
+sw_item:Autobrake|SET
+sw_item:Anti Ice|AS REQUIRED
+
+sw_checklist:DESCENT:DESCENT
+sw_item:FCU Altitude|SET
+sw_item:DES mode|ENGAGE
+sw_item:Terrain on ND|AS REQUIRED
+sw_itemvoid:Transition Level
+sw_item:Altimeters QNH|SET
+sw_itemvoid:Passing 10 thousand Feet
+sw_item:Landing Lights|ON:(ckpt/oh/ladningLightLeft/anim:2)&&(ckpt/oh/ladningLightRight/anim:2)
+sw_item:Pass Signs|ON:(ckpt/oh/seatbelts/anim:1)&&(ckpt/oh/nosmoking/anim:2)
+sw_item:ND OPTION|CSTR
+sw_item:LS Buttons (x3)|ON
+
+sw_checklist:APPROACH:APPROACH
+sw_item:FMGS APPROACH PHASE|ACTIVATE
+sw_itemvoid:________________
+sw_itemvoid:ILS ESTABLISHED
+sw_itemvoid:________________
+sw_item:AUTOPILOT2|ON:AirbusFBW/AP2Engage:1
+
+sw_checklist:LANDING:LANDING
+sw_item:At 2000ft AGL|FLAPS 2
+sw_item:Landing Gear|DOWN:sim/cockpit/switches/gear_handle_status:>0
+sw_item:Ground Spoilers|ARM:ckpt/speedbrakeUp/anim:1.000000
+sw_item:Autobrake|SET
+sw_item:ECAM WHEEL PAGE|ALL GREEN
+sw_item:Flaps|FULL:sim/cockpit2/controls/flap_ratio:1
+sw_item:ATHR mode|SPEED
+sw_item:Nose Light|TAKE OFF:ckpt/oh/taxiLight/anim:2
+sw_item:Rwy turn off lights|ON:ckpt/oh/rwyTurnOff/anim:1
+sw_item:Cabin Ready|CHECK
+
+sw_checklist:AFTER LANDING:AFTER LANDING
+sw_item:Autopilot|OFF:(AirbusFBW/AP1Engage:0)&&(:AirbusFBW/AP1Engage:0)
+sw_item:Landing Lights|OFF:(ckpt/oh/ladningLightLeft/anim:0)&&(ckpt/oh/ladningLightRight/anim:0)
+sw_item:Nose Light|TAXI:ckpt/oh/taxiLight/anim:1
+sw_item:Ground Spoilers|RETRACT:AirbusFBW/SpdBrakeDeployed:0
+sw_item:Engine Mode Selector|NORMAL:ckpt/startMode:1
+sw_item:Flaps|RETRACT:sim/flightmodel2/wing/flap1_deg:0.00
+sw_item:Apu Master|ON:AirbusFBW/APUMaster:1
+sw_item:Apu Start|ON:AirbusFBW/APUStarter:1
+sw_item:Weather Radar|OFF:sim/cockpit/switches/EFIFS_shows_weather:0
+sw_item:Terrain on ND|OFF:AirbusFBW/TerrainSelectedND1:0
+sw_item:Brake Temperature|CHECK
+sw_item:Chrono|STOP
+
+
+sw_checklist:PARKING:PARKING
+sw_item:Parking Brake|ON:ckpt/parkbrk:1
+sw_item:Anti Ice|OFF
+sw_item:Apu Bleed|ON:AirbusFBW/APUBleedSwitch:1
+sw_item:Eng1 Master|OFF:ckpt/cutoffLeft/anim:0
+sw_item:Eng2 Master|OFF:ckpt/cutoffRight/anim:0
+sw_item:Nose Light|OFF:ckpt/oh/taxiLight/anim:0
+sw_item:Rwy turn off lights|OFF:ckpt/oh/rwyTurnOff/anim:0
+
+sw_item:Seatbelts sign|OFF:ckpt/oh/seatbelts/anim:0
+sw_item:Fuel Pumps(x6)|OFF:(AirbusFBW/FuelAutoPumpOHPArray[0]:0)&&(AirbusFBW/FuelAutoPumpOHPArray[1]:0)&&(AirbusFBW/FuelAutoPumpOHPArray[2]:0)&&(AirbusFBW/FuelAutoPumpOHPArray[3]:0)&&(AirbusFBW/FuelAutoPumpOHPArray[4]:0)&&(AirbusFBW/FuelAutoPumpOHPArray[5]:0)
+sw_item:ELAPSED TIME Counter|STOP
+sw_item:ATC TCAS|STANDBY:ckpt/transponder/pwrx/anim:0
+
+
+
+sw_checklist:SECURING AIRCRAFT:SECURING AIRCRAFT
+sw_item:Doors|OPEN
+sw_item:ADIRS(x3) Selectors|OFF:(ckpt/oh/irs1/anim:0)&&(ckpt/oh/irs2/anim:0)&&(ckpt/oh/irs3/anim:0)
+sw_item:All Exterior Lights|OFF
+sw_item:Apu Bleed|OFF:AirbusFBW/APUBleedSwitch:0
+sw_item:Apu Master|OFF:sim/cockpit/engine/APU_switch:0
+sw_item:Emergency Lights|OFF:ckpt/oh/emerExitLight/anim:1
+sw_item:NoSmoking sign|OFF:ckpt/oh/nosmoking/anim:0
+sw_item:Battery 1|OFF:sim/cockpit2/electrical/battery_on[0]:0
+sw_item:Battery 2|OFF:sim/cockpit2/electrical/battery_on[1]:0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
