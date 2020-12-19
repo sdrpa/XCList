@@ -1,4 +1,6 @@
-# A319 Checklist app for iPad
+# A319 Checklist iOS app
+
+![Screenshot](Screenshot.png)
 
 ### License
 
