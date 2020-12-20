@@ -15,28 +15,28 @@ struct A319 {
             L("Engine Master 2", "OFF"),
             L("Ignition Selector", "NORMAL"),
             L("Landing Gear", "DOWN"),
-            L("Exterior Power", "CONNECT"),
+            L("External Power", "CONNECT"),
             L("Battery 1", "ON"),
             L("Battery 2", "ON"),
-            L("Exterior Power", "ON"),
+            L("Doome", "BRT"),
+            L("External Power", "ON"),
             L("Flaps", "UP"),
             L("Ground Spoilers", "RETRACTED"),
             L("Probe Window Heat", "AUTO"),
             L("Cross Bleed", "AUTO"),
-            L("AnnunLights", "TEST"),
+            L("ANN LT", "TEST"),
             L("ADIRS Data Selector", "STS"),
             L("ADIRS System Selector", "1"),
-            L("ADIRS1 Selector", "NAV"),
-            L("Wait for BAT light", "OFF"),
-            L("Repeat for ADIRS2/3"),
-            L("ADIRS3 Selector", "NAV"),
-            L("ADIRS2 Selector", "NAV"),
+            L("ADIRS1 Selector", "NAV", comment: "Wait for BAT Light OFF"),
+            L("ADIRS3 Selector", "NAV", comment: "Wait for BAT Light OFF"),
+            L("ADIRS2 Selector", "NAV", comment: "Wait for BAT Light OFF"),
          ]),
          L("COCKPIT PREPARATION 2", children: [
             L("Strobe Lights", "AUTO"),
-            L("Nav & Logo Lights", "ON"),
+            L("Nav & Logo Lights", "1"),
+            L("All Other External Lights", "OFF"),
             L("Seatbelts sign", "ON"),
-            L("NoSmoking sign", "ON"),
+            L("No Smoking sign", "ON"),
             L("Emergency Lights", "ARM"),
             L("Landing Elevation", "AUTO"),
             L("PackFlow", "AS REQUIRED"),
@@ -47,9 +47,12 @@ struct A319 {
             L("Eng2 Fire Button", "ARM GUARD"),
             L("Eng1 Fire Test", "TEST"),
             L("Eng2 Fire Test", "TEST"),
-            L("Radio Panels(x3)", "ON")
+            L("Radio Panels(x3)", "ON"),
+            L("PFD & ND Brightness", "ADJUST"),
+            L("EWD & SD Brightness", "ADJUST"),
          ]),
          L("COCKPIT PREPARATION 3 (FMGS)", children: [
+            L("MCDU Brightness", "ADJUST"),
             L("MCDU Aircraft Status Page", children: [
                L("Engine Type and Aircraft Type", "CHECK"),
                L("Database Validity", "CHECK")
@@ -81,7 +84,7 @@ struct A319 {
             L("PERF Page", children: [
                L("Take-off Speeds", "SET"),
                L("Flex Temperature", "INSERT"),
-               L("Flap position & THS", "INSERT")
+               L("Flap Position & THS", "INSERT")
             ]),
          ]),
          L("COCKPIT PREPARATION 4", children: [
@@ -99,9 +102,9 @@ struct A319 {
             L("A/SKID & NW STRG Switch", "ON"),
             L("Apu Master", "ON"),
             L("Apu Start", "ON"),
+            L("Apu Bleed", "ON"),
             L("Exterior Power", "OFF"),
-            L("GPU Truck", "DISCONNECT"),
-            L("Apu Bleed", "ON")
+            L("GPU Truck", "DISCONNECT")
          ]),
          L("PUSHBACK", children: [
             L("Doors", "CLOSED"),
