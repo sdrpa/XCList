@@ -78,7 +78,7 @@ struct A319 {
                L("Flight Plan on ND", "CHECK")
             ]),
             L("INIT B Page", children: [
-               L("ZFWCG&ZFW", "INSERT"),
+               L("ZFW/ZFWCG", "INSERT"),
                L("Block Fuel", "INSERT")
             ]),
             L("PERF Page", children: [
