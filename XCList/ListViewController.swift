@@ -93,7 +93,7 @@ extension ListViewController: UITableViewDataSource, UITableViewDelegate {
             ? UIImage(systemName: "circle")
             : UIImage(systemName: "checkmark.circle")
          cell.titleLabel.attributedText = attributedString(item.title, struckthrough: item.state == .done)
-         cell.commentLabel.text = item.comment
+         cell.commentLabel.attributedText = attributedString(item.comment ?? "", struckthrough: item.state == .done)
          let doneCount = item.children.filter { $0.state == .done }.count
          cell.summaryLabel.attributedText = attributedString("\(doneCount)/\(item.children.count)", struckthrough: item.state == .done)
          return cell
@@ -107,7 +107,7 @@ extension ListViewController: UITableViewDataSource, UITableViewDelegate {
             ? UIImage(systemName: "circle")
             : UIImage(systemName: "checkmark.circle")
          cell.titleLabel.attributedText = attributedString(item.title, struckthrough: item.state == .done)
-         cell.commentLabel.text = item.comment
+         cell.commentLabel.attributedText = attributedString(item.comment ?? "", struckthrough: item.state == .done)
          cell.summaryLabel.attributedText = attributedString(item.summary ?? "", struckthrough: item.state == .done)
          return cell
       }
