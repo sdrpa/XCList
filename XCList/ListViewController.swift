@@ -27,7 +27,17 @@ extension ListViewController {
       title = root?.title
    }
    
+   @objc private func reset(_ sender: UIBarButtonItem) {
+      root?.state = .pending
+      tableView.reloadData()
+   }
+   
    private func addRightBarButtonItem() {
+      if root?.parent == nil {
+         let rightBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(reset(_:)))
+         navigationItem.rightBarButtonItem = rightBarButtonItem
+         return
+      }
       // Don't allow Select All for roots containing parent children. Select All is allowed only when all children are leafs
       if let children = root?.children {
          let parentCount = children.filter { !$0.isLeaf }.count

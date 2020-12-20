@@ -1,4 +1,4 @@
-
+// https://github.com/raywenderlich/swift-algorithm-club/tree/master/Tree
 import Foundation
 
 enum ListItemState {
@@ -18,6 +18,9 @@ class ListItem {
    var state: ListItemState {
       set {
          _state = newValue
+         for child in children {
+            child.state = newValue
+         }
       }
       get {
          return isLeaf
@@ -38,6 +41,12 @@ class ListItem {
    }
 }
 
+extension ListItem: CustomDebugStringConvertible {
+   var debugDescription: String {
+      "\(title):\(state)"
+   }
+}
+
 extension ListItem {
    var isLeaf: Bool {
       children.count == 0
@@ -45,10 +54,5 @@ extension ListItem {
    
    func toggleState() {
       state = (state == .pending) ? .done : .pending
-   }
-   
-   func addChild(_ node: ListItem) {
-      self.children.append(node)
-      node.parent = self
    }
 }
