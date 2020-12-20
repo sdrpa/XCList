@@ -25,11 +25,19 @@
                                 </constraints>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XCList" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWT-3h-bWN">
+                                <rect key="frame" x="182" y="442.5" width="50" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="gWT-3h-bWN" firstAttribute="centerX" secondItem="GOy-fH-sDq" secondAttribute="centerX" id="221-RO-Lt6"/>
                             <constraint firstItem="GOy-fH-sDq" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="4Ti-1v-lwx"/>
+                            <constraint firstItem="gWT-3h-bWN" firstAttribute="centerY" secondItem="GOy-fH-sDq" secondAttribute="centerY" id="5uM-Qj-QWg"/>
                             <constraint firstItem="GOy-fH-sDq" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="F35-mf-svd"/>
                         </constraints>
                     </view>
