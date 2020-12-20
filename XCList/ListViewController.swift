@@ -33,6 +33,24 @@ extension ListViewController {
       tableView.reloadData()
    }
    
+   @objc private func deselectAllSelector(_ sender: UIBarButtonItem) {
+      guard let children = root?.children else { fatalError() }
+      for child in children {
+         child.state = .pending
+      }
+      updateProgress()
+      tableView.reloadData()
+   }
+   
+   @objc private func selectAllSelector(_ sender: UIBarButtonItem) {
+      guard let children = root?.children else { fatalError() }
+      for child in children {
+         child.state = .done
+      }
+      updateProgress()
+      tableView.reloadData()
+   }
+
    private func addRightBarButtonItem() {
       if root?.parent == nil {
          let rightBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(reset(_:)))
@@ -46,26 +64,9 @@ extension ListViewController {
             return
          }
       }
-      let barButtonMenu = UIMenu(title: "", children: [
-         UIAction(title: NSLocalizedString("Select All", comment: ""), image: nil) { [weak self] _ in
-            guard let children = self?.root?.children else { fatalError() }
-            for child in children {
-               child.state = .done
-            }
-            self?.updateProgress()
-            self?.tableView.reloadData()
-         },
-         UIAction(title: NSLocalizedString("Deselect All", comment: ""), image: nil) { [weak self] _ in
-            guard let children = self?.root?.children else { fatalError() }
-            for child in children {
-               child.state = .pending
-            }
-            self?.updateProgress()
-            self?.tableView.reloadData()
-         }
-      ])
-      let rightBarButtonItem = UIBarButtonItem(systemItem: .edit, primaryAction: nil, menu: barButtonMenu)
-      navigationItem.rightBarButtonItem = rightBarButtonItem
+      let deselectAll = UIBarButtonItem(image: UIImage(systemName: "text.badge.minus"), style: .plain, target: self, action: #selector(deselectAllSelector(_:)))
+      let selectAll = UIBarButtonItem(image: UIImage(systemName: "text.badge.plus"), style: .plain, target: self, action: #selector(selectAllSelector(_:)))
+      navigationItem.rightBarButtonItems = [selectAll, deselectAll]
    }
 }
 
