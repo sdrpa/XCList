@@ -1,11 +1,11 @@
 // https://github.com/raywenderlich/swift-algorithm-club/tree/master/Tree
 import Foundation
 
-enum ListItemState {
+enum ListItemState: UInt, Codable {
    case pending, done
 }
 
-class ListItem {
+class ListItem: Codable {
    let title: String
    var children: [ListItem]
    
@@ -27,6 +27,10 @@ class ListItem {
             ? _state
             : children.allSatisfy { $0.state == .done } ? .done : .pending
       }
+   }
+   
+   private enum CodingKeys: String, CodingKey {
+      case title, summary, comment, children, _state
    }
    
    init(_ title: String, _ summary: String? = nil, comment: String? = nil, children: [ListItem] = []) {
