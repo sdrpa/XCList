@@ -5,13 +5,11 @@ class ListViewController: UIViewController {
    @IBOutlet weak var tableView: UITableView!
    @IBOutlet weak var progressView: UIProgressView!
    
-   var root: ListItem?
-   
-   override func viewDidLoad() {
-      super.viewDidLoad()
-
-      title = root?.title
-      addRightBarButtonItem()
+   var root: ListItem? {
+      didSet {
+         title = root?.title
+         addRightBarButtonItem()
+      }
    }
    
    override func viewWillAppear(_ animated: Bool) {

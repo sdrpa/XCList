@@ -10,7 +10,20 @@ class NavigationController: UINavigationController {
       super.viewDidLoad()
       
       guard let listViewController = children.first as? ListViewController else { fatalError() }
-      listViewController.root = unarchive() ?? A319.root
+      if let saved = restore() {
+         listViewController.root = saved
+         // Encoding the weak parent property causes a crash, so here we set parent relationship recursively after restoration
+         func updateChildren(item: ListItem) {
+            for child in item.children {
+               child.parent = item
+               updateChildren(item: child)
+            }
+         }
+         updateChildren(item: saved)
+      } else {
+         listViewController.root = A319.root
+      }
+      
       //listViewController.root = A319.root
       //listViewController.root = Test.root
    }
@@ -23,8 +36,7 @@ extension NavigationController {
       return documentsDirectory
    }
    
-   /// Archive top parent
-   func archive() {
+   func save() {
       guard let listViewController = topViewController as? ListViewController,
             let item = listViewController.root else {
          return
@@ -47,8 +59,7 @@ extension NavigationController {
       }
    }
    
-   /// Unarchive top parent
-   private func unarchive() -> ListItem? {
+   private func restore() -> ListItem? {
       do {
          let data = try Data(contentsOf: Self.fileURL)
          let decoder = JSONDecoder()

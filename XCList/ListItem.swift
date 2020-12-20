@@ -5,7 +5,7 @@ enum ListItemState: UInt, Codable {
    case pending, done
 }
 
-class ListItem: Codable {
+final class ListItem: Codable {
    let title: String
    var children: [ListItem]
    
@@ -30,7 +30,7 @@ class ListItem: Codable {
    }
    
    private enum CodingKeys: String, CodingKey {
-      case title, summary, comment, children, _state
+      case title, summary, comment, _state, children
    }
    
    init(_ title: String, _ summary: String? = nil, comment: String? = nil, children: [ListItem] = []) {
