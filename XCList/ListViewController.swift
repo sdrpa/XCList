@@ -1,34 +1,37 @@
 
 import UIKit
 
-class ListViewController: UITableViewController {
+class ListViewController: UIViewController {
+   @IBOutlet weak var tableView: UITableView!
+   @IBOutlet weak var progressView: UIProgressView!
+   
    var root: ListItem?
    
    override func viewDidLoad() {
       super.viewDidLoad()
 
-      updateTitle()
+      title = root?.title
       addRightBarButtonItem()
    }
    
    override func viewWillAppear(_ animated: Bool) {
       super.viewDidAppear(animated)
       // A click on parent item pushes children's view controller onto the navigation stack, once we pop the children's view controller (go back) we need to refresh the parent table view since some of the children might have changed its state
+      updateProgress()
       tableView.reloadData()
    }
 }
 
 extension ListViewController {
-   private func updateTitle() {
-      //guard let root = root else { fatalError() }
-      //let doneCount = root.children.filter { $0.state == .done }.count
-      //title = "\(root.title) (\(doneCount)/\(root.children.count))"
-      
-      title = root?.title
+   private func updateProgress() {
+      guard let root = root else { fatalError() }
+      let doneCount = root.children.filter { $0.state == .done }.count
+      progressView.progress = Float(doneCount) / Float(root.children.count)
    }
    
    @objc private func reset(_ sender: UIBarButtonItem) {
       root?.state = .pending
+      updateProgress()
       tableView.reloadData()
    }
    
@@ -51,6 +54,7 @@ extension ListViewController {
             for child in children {
                child.state = .done
             }
+            self?.updateProgress()
             self?.tableView.reloadData()
          },
          UIAction(title: NSLocalizedString("Deselect All", comment: ""), image: nil) { [weak self] _ in
@@ -58,6 +62,7 @@ extension ListViewController {
             for child in children {
                child.state = .pending
             }
+            self?.updateProgress()
             self?.tableView.reloadData()
          }
       ])
@@ -66,12 +71,12 @@ extension ListViewController {
    }
 }
 
-extension ListViewController {
-   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension ListViewController: UITableViewDataSource, UITableViewDelegate {
+   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
       return root?.children.count ?? 0
    }
    
-   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
       func attributedString(_ string: String, struckthrough: Bool) -> NSAttributedString {
          let attributedString = NSMutableAttributedString(string: string)
          let attributedRange = NSMakeRange(0, attributedString.length)
@@ -115,10 +120,11 @@ extension ListViewController {
          : parentCell(item: item)
    }
    
-   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
       guard let item = root?.children[indexPath.row] else { fatalError() }
       if item.isLeaf {
          item.toggleState()
+         updateProgress()
          tableView.reloadRows(at: [indexPath], with: .automatic)
       } else {
          let storyboard = UIStoryboard(name: "Main", bundle: nil)
