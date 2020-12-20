@@ -1,7 +1,7 @@
 
 import UIKit
 
-class ListViewLeafCell: UITableViewCell {
+final class ListViewLeafCell: UITableViewCell {
    @IBOutlet weak var stateImageView: UIImageView!
    @IBOutlet weak var titleLabel: UILabel!
    @IBOutlet weak var commentLabel: UILabel!

@@ -1,7 +1,7 @@
 
 import UIKit
 
-class ListViewParentCell: UITableViewCell {
+final class ListViewParentCell: UITableViewCell {
    @IBOutlet weak var stateImageView: UIImageView!
    @IBOutlet weak var titleLabel: UILabel!
    @IBOutlet weak var commentLabel: UILabel!

@@ -1,7 +1,7 @@
 
 import UIKit
 
-class NavigationController: UINavigationController {
+final class NavigationController: UINavigationController {
    private static var fileURL: URL {
       return documentsDirectory().appendingPathComponent("root")
    }
