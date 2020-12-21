@@ -1,6 +1,11 @@
 
 import UIKit
 
+struct ImageName {
+   static let selectAll = "text.badge.plus"
+   static let deselectAll = "text.badge.minus"
+}
+
 final class ListViewController: UIViewController {
    @IBOutlet weak var tableView: UITableView!
    @IBOutlet weak var progressView: UIProgressView!
@@ -27,33 +32,41 @@ extension ListViewController {
       progressView.progress = Float(doneCount) / Float(root.children.count)
    }
    
-   @objc private func reset(_ sender: UIBarButtonItem) {
-      root?.state = .pending
+   private func selectAllChildren(of parent: ListItem) {
+      for child in parent.children {
+         child.state = .done
+      }
       updateProgress()
       tableView.reloadData()
    }
    
-   @objc private func deselectAllSelector(_ sender: UIBarButtonItem) {
-      guard let children = root?.children else { fatalError() }
-      for child in children {
+   private func deselectAllChildren(of parent: ListItem) {
+      for child in parent.children {
          child.state = .pending
       }
       updateProgress()
       tableView.reloadData()
    }
    
-   @objc private func selectAllSelector(_ sender: UIBarButtonItem) {
-      guard let children = root?.children else { fatalError() }
-      for child in children {
-         child.state = .done
-      }
+   @objc private func resetAction(_ sender: UIBarButtonItem) {
+      root?.state = .pending
       updateProgress()
       tableView.reloadData()
+   }
+   
+   @objc private func selectAllAction(_ sender: UIBarButtonItem) {
+      guard let root = root else { fatalError() }
+      selectAllChildren(of: root)
+   }
+   
+   @objc private func deselectAllAction(_ sender: UIBarButtonItem) {
+      guard let root = root else { fatalError() }
+      deselectAllChildren(of: root)
    }
 
    private func addRightBarButtonItem() {
       if root?.parent == nil {
-         let rightBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(reset(_:)))
+         let rightBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(resetAction(_:)))
          navigationItem.rightBarButtonItem = rightBarButtonItem
          return
       }
@@ -64,8 +77,8 @@ extension ListViewController {
             return
          }
       }
-      let deselectAll = UIBarButtonItem(image: UIImage(systemName: "text.badge.minus"), style: .plain, target: self, action: #selector(deselectAllSelector(_:)))
-      let selectAll = UIBarButtonItem(image: UIImage(systemName: "text.badge.plus"), style: .plain, target: self, action: #selector(selectAllSelector(_:)))
+      let deselectAll = UIBarButtonItem(image: UIImage(systemName: ImageName.deselectAll), style: .plain, target: self, action: #selector(deselectAllAction(_:)))
+      let selectAll = UIBarButtonItem(image: UIImage(systemName: ImageName.selectAll), style: .plain, target: self, action: #selector(selectAllAction(_:)))
       navigationItem.rightBarButtonItems = [selectAll, deselectAll]
    }
 }
@@ -131,6 +144,34 @@ extension ListViewController: UITableViewDataSource, UITableViewDelegate {
          
          nextViewController.root = item
          navigationController?.pushViewController(nextViewController, animated: true)
+      }
+   }
+   
+   func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+      guard let item = root?.children[indexPath.row] else { fatalError() }
+      let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: { () -> UIViewController? in
+         let storyboard = UIStoryboard(name: "Main", bundle: nil)
+         guard let viewController = storyboard.instantiateViewController(withIdentifier: "\(ListViewController.self)") as? ListViewController else { fatalError() }
+         viewController.root = item
+         return viewController
+      }) { _ -> UIMenu? in
+         let selectAll = UIAction(title: "Select All", image: UIImage(systemName: ImageName.selectAll)) { [weak self] _ in
+            self?.selectAllChildren(of: item)
+         }
+         let delectAll = UIAction(title: "Deselect All", image: UIImage(systemName: ImageName.deselectAll)) { [weak self] _ in
+            self?.deselectAllChildren(of: item)
+         }
+         return UIMenu(title: "", children: [selectAll, delectAll])
+      }
+      return configuration
+   }
+   
+   func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+      animator.addCompletion { [weak self] in
+         if let viewController = animator.previewViewController {
+            //self?.show(viewController, sender: self)
+            self?.navigationController?.pushViewController(viewController, animated: true)
+         }
       }
    }
 }
